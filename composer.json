@@ -13,7 +13,7 @@
     ],
     "require": {
         "neos/flow": "^5.0 || @dev",
-        "flownative/prometheus": "@dev"
+        "flownative/prometheus": "^0.1 || @dev"
     },
     "suggest": {
     },
