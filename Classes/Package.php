@@ -7,7 +7,6 @@ namespace Flownative\Prometheus\FlowMetrics;
  * (c) Flownative GmbH - www.flownative.com
  */
 
-use Neos\Flow\Configuration\ConfigurationManager;
 use Neos\Flow\Core\Bootstrap;
 use Neos\Flow\Package\Package as BasePackage;
 
@@ -19,8 +18,6 @@ class Package extends BasePackage
     public function boot(Bootstrap $bootstrap): void
     {
         $dispatcher = $bootstrap->getSignalSlotDispatcher();
-        $dispatcher->connect(ConfigurationManager::class, 'configurationManagerReady', function (ConfigurationManager $configurationManager) {
-            $configurationManager->registerConfigurationType('Settings', ConfigurationManager::CONFIGURATION_PROCESSING_TYPE_SETTINGS, true);
-        });
+        $dispatcher->connect(Bootstrap::class, 'finishedRuntimeRun', SessionMetricsCollectorService::class, 'collect');
     }
 }

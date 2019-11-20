@@ -8,3 +8,10 @@ Flownative:
         type: "counter"
         help: "Number of HTTP requests processed by Flow\'s HTTP stack"
         labelNames: ["code"]
+
+      # Number of Flow sessions
+      # See: \Flownative\Prometheus\FlowMetrics\SessionMetricsCollectorService
+      neos_flow_sessions:
+        type: "gauge"
+        help: "Number of Flow sessions"
+        labelNames: ["state"]
