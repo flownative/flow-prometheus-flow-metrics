@@ -1,0 +1,4 @@
+Flownative\Prometheus\FlowMetrics\HttpMetricsCollectorComponent:
+  properties:
+    collectorRegistry:
+      object: Flownative\Prometheus\DefaultCollectorRegistry

@@ -1,0 +1,10 @@
+Flownative:
+  Prometheus:
+    metrics:
+
+      # Number of HTTP requests processed by Flow
+      # See: \Flownative\Prometheus\FlowMetrics\HttpMetricsCollectorComponent
+      neos_flow_http_requests_total:
+        type: "counter"
+        help: "Number of HTTP requests processed by Flow\'s HTTP stack"
+        labelNames: ["code"]
