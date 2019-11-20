@@ -1,0 +1,26 @@
+{
+    "name": "flownative/prometheus-flow-metrics",
+    "license": "MIT",
+    "type": "neos-package",
+    "description": "Prometheus metrics for Neos Flow applications",
+    "authors": [
+        {
+            "name": "Robert Lemke",
+            "email": "robert@flownative.com",
+            "homepage": "https://www.flownative.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "neos/flow": "^5.0 || @dev",
+        "flownative/prometheus": "@dev"
+    },
+    "suggest": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Flownative\\Prometheus\\FlowMetrics\\": "Classes"
+        }
+    },
+    "extra": {}
+}
