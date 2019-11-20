@@ -39,7 +39,9 @@ class HttpMetricsCollectorComponent implements ComponentInterface
     {
         $counter = $this->collectorRegistry->getCounter('neos_flow_http_requests_total');
         if ($counter) {
-            $counter->inc();
+            $counter->inc(1, [
+                'status' => $componentContext->getHttpResponse()->getStatusCode()
+            ]);
         }
     }
 }
