@@ -3,5 +3,5 @@ Neos:
     http:
       middlewares:
         'metrics':
-          position: 'end'
+          position: 'start'
           middleware: 'Flownative\Prometheus\FlowMetrics\HttpMetricsCollectorComponent'
