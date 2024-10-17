@@ -34,14 +34,6 @@ class HttpMetricsCollectorComponent implements MiddlewareInterface
         $this->collectorRegistry = $collectorRegistry;
     }
 
-    /**
-     * Process an incoming server request and return a response, optionally delegating
-     * response creation to a handler.
-     *
-     * @param ServerRequestInterface $request
-     * @param RequestHandlerInterface $handler
-     * @return ResponseInterface
-     */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         // Handle the request and get the response from the next middleware in the chain
