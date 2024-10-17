@@ -9,13 +9,15 @@ namespace Flownative\Prometheus\FlowMetrics;
  */
 
 use Flownative\Prometheus\CollectorRegistry;
-use Neos\Flow\Http\Component\ComponentContext;
-use Neos\Flow\Http\Component\ComponentInterface;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
+use Psr\Http\Server\MiddlewareInterface;
 
 /**
- * HTTP component which collects HTTP-related metrics for Prometheus
+ * PSR-15 Middleware that collects HTTP-related metrics for Prometheus
  */
-class HttpMetricsCollectorComponent implements ComponentInterface
+class HttpMetricsCollectorComponent implements MiddlewareInterface
 {
     /**
      * @var CollectorRegistry
@@ -33,13 +35,25 @@ class HttpMetricsCollectorComponent implements ComponentInterface
     }
 
     /**
-     * @param ComponentContext $componentContext
+     * Process an incoming server request and return a response, optionally delegating
+     * response creation to a handler.
+     *
+     * @param ServerRequestInterface $request
+     * @param RequestHandlerInterface $handler
+     * @return ResponseInterface
      */
-    public function handle(ComponentContext $componentContext): void
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
+        // Handle the request and get the response from the next middleware in the chain
+        $response = $handler->handle($request);
+
+        // Collect metrics based on the HTTP response status
         $this->collectorRegistry->getCounter('neos_flow_http_requests_total')
             ->inc(1, [
-                'status' => $componentContext->getHttpResponse()->getStatusCode()
+                'status' => $response->getStatusCode()
             ]);
+
+        // Return the processed response
+        return $response;
     }
 }
