@@ -1,8 +1,8 @@
 {
     "name": "flownative/prometheus-flow-metrics",
-    "license": "MIT",
     "type": "neos-package",
     "description": "Prometheus metrics for Neos Flow applications",
+    "license": "MIT",
     "authors": [
         {
             "name": "Robert Lemke",
@@ -12,7 +12,7 @@
         }
     ],
     "require": {
-        "neos/flow": "5.* || 6.* || @dev",
+        "neos/flow": "7.* || 8.* || @dev",
         "flownative/prometheus": "0.* || @dev"
     },
     "suggest": {

@@ -1,10 +1,7 @@
 Neos:
   Flow:
     http:
-      chain:
-        'postprocess':
-          chain:
-            'Flownative.Prometheus:metricsExporter':
-              'position': 'end'
-              component: 'Flownative\Prometheus\FlowMetrics\HttpMetricsCollectorComponent'
-              componentOptions: []
+      middlewares:
+        'metrics':
+          position: 'start'
+          middleware: 'Flownative\Prometheus\FlowMetrics\HttpMetricsCollectorComponent'
